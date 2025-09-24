@@ -8,20 +8,24 @@ import {
   Menu,
   MessageSquare,
   Smile,
+  Timer,
+  BarChart3,
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import InitialAssessment from "@/components/initial-assessment";
-import ChatInterface from "@/components/chat-interface";
-import MoodTracker from "@/components/mood-tracker";
-import GoalSetter from "@/components/goal-setter";
+import EnhancedChatInterface from "@/components/enhanced-chat-interface";
+import EnhancedMoodTracker from "@/components/enhanced-mood-tracker";
+import EnhancedGoalSetter from "@/components/enhanced-goal-setter";
 import ResourceDirectory from "@/components/resource-directory";
+import MeditationTimer from "@/components/meditation-timer";
+import WellnessDashboard from "@/components/wellness-dashboard";
 import { Logo } from "@/components/icons";
 
 type NavItem = {
-  id: "chat" | "mood" | "goals" | "resources";
+  id: "dashboard" | "chat" | "mood" | "goals" | "meditation" | "resources";
   label: string;
   icon: React.ElementType;
   component: React.ElementType;
@@ -29,22 +33,34 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
+    id: "dashboard",
+    label: "Dashboard",
+    icon: BarChart3,
+    component: WellnessDashboard,
+  },
+  {
     id: "chat",
     label: "Chat",
     icon: MessageSquare,
-    component: ChatInterface,
+    component: EnhancedChatInterface,
   },
   {
     id: "mood",
     label: "Mood Tracking",
     icon: Smile,
-    component: MoodTracker,
+    component: EnhancedMoodTracker,
   },
   {
     id: "goals",
     label: "Goal Setting",
     icon: Goal,
-    component: GoalSetter,
+    component: EnhancedGoalSetter,
+  },
+  {
+    id: "meditation",
+    label: "Meditation",
+    icon: Timer,
+    component: MeditationTimer,
   },
   {
     id: "resources",
@@ -56,7 +72,7 @@ const navItems: NavItem[] = [
 
 export default function Home() {
   const isMobile = useIsMobile();
-  const [activeView, setActiveView] = React.useState<NavItem["id"]>("chat");
+  const [activeView, setActiveView] = React.useState<NavItem["id"]>("dashboard");
 
   const ActiveComponent = navItems.find((item) => item.id === activeView)?.component;
 

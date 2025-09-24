@@ -15,4 +15,19 @@ export type Goal = {
   id: number;
   text: string;
   completed: boolean;
+  category?: 'wellness' | 'personal' | 'social' | 'creative';
+  priority?: 'low' | 'medium' | 'high';
+  dueDate?: string;
+  createdAt?: string;
+  completedAt?: string;
+};
+
+export type WellnessMetric = {
+  id: string;
+  name: string;
+  value: number;
+  target: number;
+  unit: string;
+  color: string;
+  trend: 'up' | 'down' | 'stable';
 };
